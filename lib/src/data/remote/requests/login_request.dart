@@ -1,0 +1,19 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'login_request.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
+class LoginRequest {
+  final String phoneNumber;
+  final String password;
+
+  LoginRequest({
+    required this.phoneNumber,
+    required this.password,
+  });
+
+  factory LoginRequest.fromJson(Map<String, dynamic> json) =>
+      _$LoginRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LoginRequestToJson(this);
+}

@@ -1,0 +1,9 @@
+export 'image_data_model.dart';
+export 'collection_data_model.dart';
+export 'genre_data_model.dart';
+export 'company_data_model.dart';
+export 'country_data_model.dart';
+export 'language_data_model.dart';
+export 'error_data_model.dart';
+export 'token_data_model.dart';
+export 'user_data_model.dart';
