@@ -133,3 +133,6 @@ app.*.symbols
 *.g.dart
 *.freezed.dart
 .fvm/
+.lib/gen/assets.gen.dart
+.lib/gen/colors.gen.dart
+.lib/gen/fonts.gen.dart
