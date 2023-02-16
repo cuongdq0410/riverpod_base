@@ -91,4 +91,5 @@ mobile development, and a full API reference.
 
 ## Localization
 
-`context.res.call().myList`
+`context.res().myList`
+Generate command: `flutter gen-l10n`
