@@ -18,10 +18,10 @@ final CustomProgressDialog loadingDialog =
     CustomProgressDialog(AppNavigator.currentContext!, dismissable: false);
 
 abstract class BaseStatelessView<V extends BaseViewModel>
-    extends ConsumerWidget {
+    extends StatelessWidget {
   const BaseStatelessView({Key? key}) : super(key: key);
 
-  Widget createView(BuildContext context, WidgetRef ref);
+  Widget createView(BuildContext context);
 
   abstract final ProviderBase<V> viewModelProvider;
 
@@ -46,10 +46,10 @@ abstract class BaseStatelessView<V extends BaseViewModel>
   BuildContext get buildContext => AppNavigator.currentContext!;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Stack(
       children: [
-        createView(context, ref),
+        createView(context),
         _createErrorView(context),
         _createLoading(context),
       ],

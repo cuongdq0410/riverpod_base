@@ -13,7 +13,7 @@ class HomePage extends BaseStatelessView<HomeViewModel> {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget createView(BuildContext context, WidgetRef ref) {
+  Widget createView(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
         final homeRef = ref.watch(viewModelProvider);

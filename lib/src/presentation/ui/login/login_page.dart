@@ -15,7 +15,7 @@ class LoginPage extends BaseStatelessView<LoginViewModel> {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  Widget createView(BuildContext context, WidgetRef ref) {
+  Widget createView(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -23,7 +23,7 @@ class LoginPage extends BaseStatelessView<LoginViewModel> {
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             children: [
-              buildMain(context, ref),
+              buildMain(context),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -49,40 +49,42 @@ class LoginPage extends BaseStatelessView<LoginViewModel> {
     );
   }
 
-  Expanded buildMain(BuildContext context, WidgetRef ref) {
-    final loginRef = ref.watch(viewModelProvider);
+  Expanded buildMain(BuildContext context) {
     return Expanded(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 8.h),
-            const AuthorizeCommonTop(title: 'Đăng nhập'),
-            CommonTextField(
-              label: 'Số điện thoại',
-              margin: EdgeInsets.only(top: 27.h, bottom: 16.h),
-              controller: loginRef.phoneNumberController,
-            ),
-            CommonTextField(
-              label: 'Mật khẩu',
-              isObscure: true,
-              controller: loginRef.passwordController,
-            ),
-            Visibility(
-              visible: false,
-              child: Padding(
-                padding: EdgeInsets.only(top: 8.h, left: 16.w),
-                child: Text(
-                  'Mật khẩu hoặc số điện thoại không đúng',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: ColorName.redBF4A4A,
-                      ),
-                ),
+      child: Consumer(builder: (context, ref, _) {
+        final loginRef = ref.watch(viewModelProvider);
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 8.h),
+              const AuthorizeCommonTop(title: 'Đăng nhập'),
+              CommonTextField(
+                label: 'Số điện thoại',
+                margin: EdgeInsets.only(top: 27.h, bottom: 16.h),
+                controller: loginRef.phoneNumberController,
               ),
-            )
-          ],
-        ),
-      ),
+              CommonTextField(
+                label: 'Mật khẩu',
+                isObscure: true,
+                controller: loginRef.passwordController,
+              ),
+              Visibility(
+                visible: false,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 8.h, left: 16.w),
+                  child: Text(
+                    'Mật khẩu hoặc số điện thoại không đúng',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: ColorName.redBF4A4A,
+                        ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 

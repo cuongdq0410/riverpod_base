@@ -17,7 +17,7 @@ class OtpVerificationPage extends BaseStatelessView<OtpVerificationViewModel> {
   const OtpVerificationPage({Key? key}) : super(key: key);
 
   @override
-  Widget createView(BuildContext context, WidgetRef ref) {
+  Widget createView(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         bottom: false,

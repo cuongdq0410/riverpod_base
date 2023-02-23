@@ -16,7 +16,7 @@ class IntroPage extends BaseStatelessView<IntroViewModel> {
   const IntroPage({Key? key}) : super(key: key);
 
   @override
-  Widget createView(BuildContext context, WidgetRef ref) {
+  Widget createView(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -27,32 +27,34 @@ class IntroPage extends BaseStatelessView<IntroViewModel> {
               Assets.images.icSmallLogoFull.svg(),
               SizedBox(height: 46.h),
               Expanded(
-                child: Swiper(
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        const Spacer(),
-                        slideImages[index].image,
-                        SizedBox(height: 24.h),
-                        Text(
-                          slideImages[index].title,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(height: 1.3),
-                        ),
-                      ],
-                    );
-                  },
-                  autoplay: true,
-                  duration: 4000,
-                  itemCount: slideImages.length,
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  onIndexChanged: (index) {
-                    ref.watch(viewModelProvider).setSlideIndex(index);
-                  },
-                ),
+                child: Consumer(builder: (context, ref, _) {
+                  return Swiper(
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          const Spacer(),
+                          slideImages[index].image,
+                          SizedBox(height: 24.h),
+                          Text(
+                            slideImages[index].title,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(height: 1.3),
+                          ),
+                        ],
+                      );
+                    },
+                    autoplay: true,
+                    duration: 4000,
+                    itemCount: slideImages.length,
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    onIndexChanged: (index) {
+                      ref.watch(viewModelProvider).setSlideIndex(index);
+                    },
+                  );
+                }),
               ),
               SizedBox(height: 16.h),
               Consumer(
